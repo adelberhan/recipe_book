@@ -1,0 +1,53 @@
+# Byte-compiled / cache files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+env/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Flask instance folder (if used)
+instance/
+
+# Environment variables and config
+*.env
+.env.*
+config.py  # only if you store secrets here
+
+# Log files
+*.log
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# VS Code / PyCharm / editors
+.vscode/
+.idea/
+
+# Testing
+.coverage
+.tox/
+.pytest_cache/
+
+# Node (if you use JS frontend)
+node_modules/
+
+# Database (if SQLite used locally)
+*.sqlite3
+*.db
+
+# Packaging artifacts
+*.egg-info/
+dist/
+build/
+
+# Static generated files (optional if built by tools)
+*.min.js
+*.map
