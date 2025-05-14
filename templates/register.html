@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        background: #f0f0f0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .container {
+        background: white;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 300px;
+      }
+
+      .form-title {
+        text-align: center;
+        margin-bottom: 1rem;
+        font-weight: bold;
+        font-size: 1.2rem;
+      }
+
+      .input-container {
+        margin-bottom: 1rem;
+      }
+
+      .input-container input {
+        width: 100%;
+        padding: 0.5rem;
+        box-sizing: border-box;
+      }
+
+      .submit {
+        width: 100%;
+        padding: 0.5rem;
+        background: #007bff;
+        border: none;
+        color: white;
+        cursor: pointer;
+      }
+
+      .signup-link {
+        text-align: center;
+        margin-top: 1rem;
+      }
+
+      .error {
+        color: red;
+        text-align: center;
+        margin-bottom: 0.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <div class="container">
+    <form class="form" id="login-form">
+      <p class="form-title">Sign in to your account</p>
+      <div id="error-message" class="error"></div>
+      <div class="input-container">
+        <input type="text" id="email" placeholder="Enter email" required />
+      </div>
+      <div class="input-container">
+        <input type="password" id="password" placeholder="Enter password" required />
+      </div>
+      <button type="submit" class="submit">Sign in</button>
+
+      <p class="signup-link">
+        No account?
+        <a href="/register">Sign up</a>
+      </p>
+    </form>
+  </div> -->
+
+    <!-- 
+              <form id="register-form" action="/api/register" method="POST">
+    <div class="form-group">
+        <label for="reg-username">Username</label>
+        <input type="text" id="reg-username" name="username" required />
+    </div>
+    <div class="form-group">
+        <label for="reg-password">Password</label>
+        <input type="password" id="reg-password" name="password" required />
+    </div>
+    <div class="form-group">
+        <label for="reg-confirm-password">Confirm Password</label>
+        <input type="password" id="reg-confirm-password" name="confirm-password" required />
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Register</button>
+    </div>
+    <div class="message" id="register-message"></div>
+</form> -->
+    <div class="container">
+      <form class="form" id="register-form">
+        <p class="form-title">Create a new account</p>
+        <div id="error-message" class="error"></div>
+
+        <div class="input-container">
+          <input type="text" id="username" placeholder="Enter username" required />
+        </div>
+
+        <div class="input-container">
+          <input type="password" id="password" placeholder="Enter Password" required />
+        </div>
+
+        <div class="input-container">
+          <input type="password" id="re-password" placeholder="Re-Enter password" required />
+        </div>
+
+        <button type="submit" class="submit">Sign up</button>
+
+        <p class="signup-link">
+          Already have an account?
+          <a href="/login">Sign in</a>
+        </p>
+      </form>
+    </div>
+    <script src="/static/js/auth.js"></script>
+  </body>
+</html>

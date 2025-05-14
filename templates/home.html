@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home - Recipe Book</title>
+    <link rel="stylesheet" href="/static/css/style.css" />
+  </head>
+  <body>
+    <!-- You can include header with JS or manually -->
+    <main class="container">
+      <div id="home-view" >
+        <div class="home-options">
+          <div class="option-card">
+            <h2>Search Recipes</h2>
+            <p>Find recipes by name, ingredients, or cooking time.</p>
+            <a href="#add-recipe" class="btn btn-primary">Add New</a>
+            <!-- <button class="btn btn-primary" data-action="search-recipes">Search</button> -->
+            <!-- <button class="btn btn-primary" data-action="search-recipes">Search</button> -->
+          </div>
+
+          <div class="option-card">
+            <h2>Add Recipe</h2>
+            <p>Create and share your favorite recipes.</p>
+            <a href="add-recipe" class="btn btn-primary">Add New</a>
+          </div>
+
+          <div class="option-card">
+            <h2>View All Recipes</h2>
+            <p>Browse all available recipes in the collection.</p>
+            <a href="/recipes" class="btn btn-primary">View All</a>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="/static/js/main.js"></script>
+  </body>
+</html>
