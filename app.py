@@ -30,8 +30,7 @@ if not os.path.exists("data/users.json"):
 
 @app.route('/')
 def index():
-    print("index00000000000000000000000000")
-    return send_from_directory('templates', 'index.html')
+    return send_from_directory('templates', 'home.html')
 
 @app.route('/<path:path>')
 def send_template(path):
@@ -87,9 +86,20 @@ def register():
 
 
 
+# @app.route('/add-recipe', methods=['GET'])
+# def add_recipe():
+#     if 'user_id' not in session:
+#         return login_page()
+#     return jsonify({"success": False, "message": "User not logged in"}), 401
+#     return render_template('add_recipe.html')
+
 @app.route('/add-recipe', methods=['GET'])
 def add_recipe():
-    return render_template('add_recipe.html')
+    if 'user_id' not in session:
+        return login_page()  # or redirect(url_for('login_page'))
+
+    return render_template('add_recipe.html')  # only reached if user is logged in
+
 
 
 @app.route('/login', methods=['GET','post'])  
@@ -119,6 +129,8 @@ def login_page():
         },
             
     })
+    
+
 
 # @app.route('/api/login', methods=['GET','POST'])
 # def login():
@@ -143,6 +155,11 @@ def login_page():
 #          "redirect_url": "/home"
 #     })
 
+@app.route('/logout', methods=['GET'])
+def logout():
+    # Clear the session
+    session.pop('user_id', None)
+    return jsonify({"success": True, "message": "Logged out successfully"}), 200
 
 
 @app.route("/home",methods=['GET'])

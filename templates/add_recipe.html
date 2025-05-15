@@ -10,7 +10,9 @@
     <main class="container">
       <div id="add-recipe-view" class="view">
         <h2 id="form-title">Add New Recipe</h2>
-
+        <div class="">
+          <a type="submit" href="/home" class="btn btn-home" id="save-recipe"> ⬅ Home</a>
+        </div>
         <form id="recipe-form">
           <input type="hidden" id="recipe-id" />
           <div class="form-group">
@@ -52,7 +54,7 @@
 
           <div class="form-actions">
             <button type="submit" class="btn btn-secondary" id="save-recipe">Save Recipe</button>
-            <a href="/home" class="btn btn-primary">Cancel</a>
+            <a href="/recipes" class="btn btn-primary">Cancel</a>
           </div>
 
           <div class="message" id="recipe-message"></div>

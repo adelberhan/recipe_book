@@ -4,33 +4,33 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-
+    <link rel="stylesheet" href="../static/css/style.css" />
     <style>
       body {
         margin: 0;
         padding: 0;
         font-family: sans-serif;
-        background: #f0f0f0;
+        /* background: #f0f0f0; */
         display: flex;
         justify-content: center;
         align-items: center;
         height: 100vh;
       }
 
-      .container {
+      /* .container {
         background: white;
         padding: 2rem;
         border-radius: 10px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         width: 300px;
-      }
+      } */
 
-      .form-title {
+      /* .form-title {
         text-align: center;
         margin-bottom: 1rem;
         font-weight: bold;
         font-size: 1.2rem;
-      }
+      } */
 
       .input-container {
         margin-bottom: 1rem;
@@ -45,7 +45,7 @@
       .submit {
         width: 100%;
         padding: 0.5rem;
-        background: #007bff;
+        background: var(--primary-color);
         border: none;
         color: white;
         cursor: pointer;
@@ -102,30 +102,32 @@
     </div>
     <div class="message" id="register-message"></div>
 </form> -->
-    <form class="form" id="register-form">
-      <p class="form-title">Create a new account</p>
-      <div id="error-message" class="error"></div>
+    <div class="login-container">
+      <form class="form" id="register-form">
+        <h1 class="login-form-title">Create a new account</h1>
+        <div id="error-message" class="error"></div>
 
-      <div class="input-container">
-        <input type="text" id="username" placeholder="Enter username" required />
-      </div>
+        <div class="input-container">
+          <input type="text" id="username" placeholder="Enter username" required />
+        </div>
 
-      <div class="input-container">
-        <input type="password" id="password" placeholder="Enter Password" required />
-      </div>
+        <div class="input-container">
+          <input type="password" id="password" placeholder="Enter Password" required />
+        </div>
 
-      <div class="input-container">
-        <input type="password" id="re-password" placeholder="Re-Enter password" required />
-      </div>
+        <div class="input-container">
+          <input type="password" id="re-password" placeholder="Re-Enter password" required />
+        </div>
 
-      <button type="submit" class="submit">Sign up</button>
+        <button type="submit" class="submit">Sign up</button>
 
-      <p class="signup-link">
-        Already have an account?
-        <a href="/login">Sign in</a>
-      </p>
-    </form>
-    <div class="container"></div>
+        <p class="signup-link">
+          Already have an account?
+          <a href="/login">Sign in</a>
+        </p>
+      </form>
+    </div>
+    <!-- <div class="container"></div> -->
     <script src="/static/js/auth.js"></script>
   </body>
 </html>

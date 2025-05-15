@@ -3,12 +3,7 @@ __pycache__/
 *.py[cod]
 *.pyo
 *.pyd
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*.pyo
-*.pythond
-*.pyd
+
 # Virtual environment
 venv/
 env/

@@ -35,7 +35,6 @@
 //       alert("Error saving recipe.");
 //     });
 // });
-
 function loadRecipeToForm(recipeId) {
   fetch(`/api/recipes/${recipeId}`)
     .then((res) => res.json())
@@ -92,17 +91,19 @@ function loadRecipeToForm(recipeId) {
 document.getElementById("recipe-form").addEventListener("submit", function (event) {
   event.preventDefault();
 
+  const userName = localStorage.getItem("username");
   const recipeId = document.getElementById("recipe-id").value;
   const method = recipeId ? "PUT" : "POST";
   const url = recipeId ? `/api/recipes/${recipeId}` : "/api/recipes";
   const recipeData = {
+    
     name: document.getElementById("recipe-name").value,
     image_url: document.getElementById("recipe-image").value,
     prep_time: document.getElementById("prep-time").value,
     cook_time: document.getElementById("cook-time").value,
     ingredients: document.getElementById("ingredients-list").value,
     instructions: document.getElementById("instructions-text").value,
-    created_by: "your_user_id_here", // required only for POST
+    created_by: userName, // required only for POST
   };
 
   if (method === "PUT") delete recipeData.created_by;
@@ -120,13 +121,14 @@ document.getElementById("recipe-form").addEventListener("submit", function (even
     })
     .then((data) => {
       alert(recipeId ? "Recipe updated!" : "Recipe added!");
+      window.location.href = "/recipes"; // redirect to the recipes page
       // redirect if needed
     })
     .catch((err) => {
-        console.error(err);
+        
         alert("Something went wrong.");
     });
-    console.log(data);
+    
 });
 
 window.addEventListener("DOMContentLoaded", () => {
