@@ -35,5 +35,5 @@ if (localStorage.getItem("username") === null && logoutButton) {
 }
 
 if ( localStorage.getItem("username") && userName) {
-  userName.innerText = 'Welcome ' + localStorage.getItem("username").toLocaleUpperCase()+' 😃';
+  userName.innerText = 'HI ' + localStorage.getItem("username").toLocaleUpperCase()+' 😃';
 }

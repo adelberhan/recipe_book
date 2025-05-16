@@ -139,9 +139,21 @@
         display: flex;
       }
       .user-name-active {
-        color: #03A791;
+        color: #03a791;
+      }
+      .logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* adjust spacing as needed */
       }
 
+      .logo img {
+        max-width: 100%;
+        height: auto;
+        width: 200px; /* or any fixed size like 150px */
+        object-fit: contain;
+      }
       /* Responsive Styles */
       @media (max-width: 768px) {
         .nav-container {
@@ -161,6 +173,126 @@
           width: 100%;
         }
       }
+      /* Navigation Bar Styles */
+      .navbar {
+        background-color: #fff8f0;
+        padding: 1rem 2rem;
+        border-radius: 16px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        margin: 10px 20px;
+        position: sticky;
+        top: 0;
+        z-index: 999;
+      }
+
+      /* Flex Container */
+      .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      /* Logo */
+      .logo img {
+        height: 50px;
+        width: auto;
+      }
+
+      /* Nav Links */
+      .nav-links ul {
+        display: flex;
+        list-style: none;
+        gap: 1.5rem;
+        margin: 0;
+        padding: 0;
+      }
+
+      .nav-links a {
+        color: #2c2c2c;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 1rem;
+        transition: color 0.3s;
+      }
+
+      .nav-links a:hover {
+        color: #03a791;
+      }
+
+      /* Search */
+      .search-container {
+        position: relative;
+        width: 280px;
+      }
+
+      #search-input {
+        width: 100%;
+        padding: 0.5rem 1rem;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        background-color: #fafafa;
+        font-size: 1rem;
+      }
+
+      #search-input:focus {
+        outline: none;
+        border-color: #03a791;
+        background-color: #fff;
+        box-shadow: 0 0 0 2px #03a79140;
+      }
+
+      /* User & Logout */
+      .user-container {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .user-name-active {
+        font-weight: 600;
+        color: #03a791;
+      }
+
+      .btn-login,
+      .btn-logout {
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        font-weight: 500;
+        text-decoration: none;
+        transition: background 0.3s;
+        border: none;
+      }
+
+      .btn-login {
+        background-color: #198754;
+        color: #fff;
+      }
+
+      .btn-logout {
+        background-color: #dc3545;
+        color: #fff;
+      }
+
+      /* Responsive Adjustments */
+      @media (max-width: 768px) {
+        .nav-container {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 1rem;
+        }
+
+        .nav-links ul {
+          justify-content: center;
+          flex-wrap: wrap;
+        }
+
+        .search-container {
+          width: 100%;
+        }
+      }
     </style>
   </head>
 
@@ -168,7 +300,11 @@
     <main class="container">
       <nav class="navbar">
         <div class="nav-container">
-          <div class="logo">Logo</div>
+          <div class="logo">
+            <a href="/home">
+              <img src="../static/imgs/logo.png" alt="" />
+            </a>
+          </div>
           <div class="nav-links">
             <ul>
               <li><a href="/home">Home</a></li>
