@@ -1,0 +1,123 @@
+:root {
+  --primary-color: #ffb22c;
+  --secondary-color: #03a791;
+  --dark-color: #2d3436;
+  --light-color: #fff8f0;
+  --success-color: #2ecc71;
+  --fon-color: #526d82;
+  --danger-color: #e74c3c;
+  --font-main: cursive;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-main);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  min-height: 100vh;
+
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.6;
+  color: var(--dark-color);
+  /* background-color: #f9f9f9; */
+  background-color: #dfdfdf;
+  opacity: 0.8;
+  background-image: linear-gradient(#b7b7bc 1px, transparent 1px), linear-gradient(to right, #b7b7bc 1px, #dfdfdf 1px);
+  background-size: 20px 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  background-color: #ffffffa6;
+  border-radius: 16px;
+}
+
+.view {
+  animation: fadeIn 0.3s ease;
+}
+
+.btn-back {
+  background-color: #198754;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+a {
+  text-decoration: none;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-family: var(--font-main);
+  font-size: 15px;
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+#recipe-image {
+  display: block;
+  width: 100%;
+  max-height: 300px; /* Adjust as needed */
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.ingredients-container {
+  margin-bottom: 10px;
+}
+
+#ingredients-list,
+#instructions-text {
+  white-space: pre-line; /* Preserve line breaks */
+  color: #555;
+  line-height: 1.6;
+}
+
+.btn-danger {
+background: var(--danger-color);
+color: white;
+  margin-bottom: 10px;
+}
+
+.message {
+  margin-top: 15px;
+  padding: 10px;
+  border-radius: 5px;
+}
