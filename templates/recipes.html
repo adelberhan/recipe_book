@@ -1,47 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="/static/css/recipes.css" />
-  <title>Recipe App</title>
-</head>
-<body>
-  <main class="container">
-    <nav class="navbar">
-      <div class="nav-container">
-        <div class="logo">
-          <a href="/home">
-            <img src="/static/imgs/logo.png" alt="App Logo" />
-          </a>
-        </div>
-        <div class="nav-links">
-          <ul>
-            <li><a href="/home">Home</a></li>
-            <li><a href="/add-recipe">Add Recipe</a></li>
-          </ul>
-        </div>
-
-        <div class="search-container">
-          <input type="text" id="search-input" placeholder="Search recipes..." autocomplete="off" />
-          <div id="search-results" class="search-results"></div>
-        </div>
-        <div class="user-container">
-          <div class="user-info">
-            <span id="user-name-active" class="user-name-active"></span>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/_base.css" />
+    <link rel="stylesheet" href="/static/css/recipes.css" />
+    <title>Recipe App</title>
+  </head>
+  <body>
+    <main class="container">
+      <nav class="navbar">
+        <div class="nav-container">
+          <div class="logo">
+            <a href="/home">
+              <img src="/static/imgs/logo.png" alt="App Logo" />
+            </a>
           </div>
-          <div class="logout">
-            <button id="logout-button" class="btn btn-logout">Logout</button>
+          <div class="nav-links">
+            <ul>
+              <li>
+                <a href="/home"><i class="fa-solid fa-house-chimney"></i>Home</a>
+              </li>
+              <li>
+                <a href="/add-recipe"> <i class="fa-solid fa-plus"></i>Add Recipe</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="search-container">
+            <input type="text" id="search-input" placeholder="Search recipes..." autocomplete="off" />
+            <div id="search-results" class="search-results"></div>
+          </div>
+          <div class="user-container">
+            <div class="user-info">
+              <span id="user-name-active" class="user-name-active"></span>
+            </div>
+            <div class="logout">
+              <button id="logout-button" class="btn btn-logout">Logout</button>
+            </div>
           </div>
         </div>
-      </div>
-    </nav>
+      </nav>
 
-    <div id="home-view"></div>
-    <div id="recipes-container"></div>
-  </main>
+      <div id="home-view"></div>
+      <div id="recipes-container"></div>
+    </main>
 
-  <script src="/static/js/auth.js"></script>
-  <script src="/static/js/recipes.js"></script>
-</body>
+    <script src="/static/js/auth.js"></script>
+    <script src="/static/js/recipes.js"></script>
+    <script src="https://kit.fontawesome.com/fa271e3277.js" crossorigin="anonymous"></script>
+  </body>
 </html>

@@ -46,11 +46,6 @@ body {
   animation: fadeIn 0.3s ease;
 }
 
-.btn-back {
-  background-color: #198754;
-  margin-bottom: 10px;
-  color: white;
-}
 
 .btn {
   display: inline-block;
@@ -110,11 +105,7 @@ a {
   line-height: 1.6;
 }
 
-.btn-danger {
-background: var(--danger-color);
-color: white;
-  margin-bottom: 10px;
-}
+
 
 .message {
   margin-top: 15px;
