@@ -3,15 +3,13 @@ const pathSegments = window.location.pathname.split("/");
 const recipeId = pathSegments[2];
 if (!recipeId) {
   document.body.innerHTML = '<p style="color:red;">No recipe ID provided in the URL</p>';
-  console.log(recipeId);
 } else {
   fetch(`/api/recipes/${recipeId}`)
-  .then((res) => {
+    .then((res) => {
       if (!res.ok) throw new Error("Recipe not found");
       return res.json();
     })
     .then((data) => {
-        console.log(data)
       document.getElementById("recipe-name").textContent = data.name;
       document.getElementById("recipe-image").src = data.image_url;
       document.getElementById("created-by").textContent = data.created_by;

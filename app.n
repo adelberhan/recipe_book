@@ -1,80 +1,46 @@
 from flask import Flask, request, jsonify, send_from_directory, render_template, session
 import os
+from flask_login import login_required, current_user
 import json
 from recipe import Recipe
 from user import User
+from uuid import uuid4
+
 
 app = Flask(__name__, static_folder="static")
-app.secret_key = "adel"
 
-# -------------------- Utility Functions --------------------
+
+app.secret_key = "adel"
 
 
 def get_html(page_name):
+    # html_file = open(page_name + ".html")
     with open(f"templates/{page_name}") as html_file:
         content = html_file.read()
+        # content = html_file.close()
     return content
 
 
-def initialize_data_files():
-    """Ensure data directory and required files exist"""
-    os.makedirs("data", exist_ok=True)
-
-    # Initialize recipes.json
-    if not os.path.exists("data/recipes.json"):
-        with open("data/recipes.json", "w") as f:
-            json.dump([], f)
-
-    # Initialize users.txt
-    if not os.path.exists("data/users.txt"):
-        with open("data/users.txt", "w") as f:
-            f.write("")  # Empty file or initial structure
+# Ensure data directory exists
+os.makedirs("data", exist_ok=True)
+if not os.path.exists("data/recipes.json"):
+    with open("data/recipes.json", "w") as f:
+        json.dump([], f)
+if not os.path.exists("data/users.json"):
+    with open("data/users.json", "w") as f:
+        json.dump([], f)
 
 
-def read_users():
-    """Read user data from users.txt"""
-    try:
-        with open("data/users.txt", "r") as f:
-            # Example format: username:password:email (one per line)
-            users = []
-            for line in f:
-                if line.strip():  # Skip empty lines
-                    parts = line.strip().split(":")
-                    if len(parts) >= 3:  # Ensure valid format
-                        users.append(
-                            {
-                                "username": parts[0],
-                                "password": parts[1],
-                                "email": parts[2],
-                            }
-                        )
-            return users
-    except FileNotFoundError:
-        return []
+@app.route("/")
+def index():
+    return send_from_directory("templates", "home.html")
 
 
-def write_users(users):
-    """Write user data to users.txt"""
-    with open("data/users.txt", "w") as f:
-        for user in users:
-            line = f"{user['username']}:{user['password']}:{user['email']}\n"
-            f.write(line)
+@app.route("/<path:path>")
+def send_template(path):
+    return send_from_directory("templates", path)
 
 
-# Update your initialize_data_files function
-def initialize_data_files():
-    """Ensure data directory and required files exist"""
-    os.makedirs("data", exist_ok=True)
-    for file_path in ["data/recipes.json", "data/users.txt"]:
-        if not os.path.exists(file_path):
-            with open(file_path, "w") as f:
-                json.dump([], f)
-
-
-# -------------------- Authentication Routes --------------------
-
-
-# Render the registration page
 @app.route("/register", methods=["GET"])
 def register_page():
     if "user_id" in session:
@@ -82,83 +48,41 @@ def register_page():
     return get_html("register.html")
 
 
-# Handle user registration (GET or POST)
-@app.route("/api/register", methods=["POST"])
+@app.route("/api/register", methods=["GET", "POST"])
 def register():
-    try:
-        data = request.get_json()
-        if not data:
-            return jsonify({"success": False, "message": "No data provided"}), 400
+    data = request.get_json()
+    username = data.get("username")
+    password = data.get("password")
 
-        username = data.get("username", "").strip()
-        password = data.get("password", "").strip()
-
-        # Validation
-        if not username or not password:
-            return (
-                jsonify(
-                    {"success": False, "message": "Username and password are required"}
-                ),
-                400,
-            )
-
-        if len(username) < 3:
-            return (
-                jsonify(
-                    {
-                        "success": False,
-                        "message": "Username must be at least 3 characters",
-                    }
-                ),
-                400,
-            )
-
-        if len(password) < 6:
-            return (
-                jsonify(
-                    {
-                        "success": False,
-                        "message": "Password must be at least 6 characters",
-                    }
-                ),
-                400,
-            )
-
-        # Check if user exists
-        if User.get_by_username(username):
-            return (
-                jsonify({"success": False, "message": "Username already exists"}),
-                400,
-            )
-
-        # Create and save user
-        new_user = User(username=username, password=password)
-        new_user.save()
-
+    if not username or not password:
         return (
             jsonify(
-                {
-                    "success": True,
-                    "user": {
-                        "id": new_user.id,
-                        "username": new_user.username,
-                        "created_at": new_user.created_at,
-                    },
-                }
+                {"success": False, "message": "Username and password are required"}
             ),
-            201,
+            400,
         )
 
-    except Exception as e:
-        return (
-            jsonify(
-                {"success": False, "message": "Registration failed", "error": str(e)}
-            ),
-            500,
-        )
+    existing_user = User.get_by_username(username)
+    if existing_user:
+        return jsonify({"success": False, "message": "Username already exists"}), 400
+
+    user = User(username=username, password=password)
+    user.save()
+
+    return (
+        jsonify({"success": True, "user": {"username": user.username, "id": user.id}}),
+        201,
+    )
 
 
-# Render the login page or handle login POST request
+@app.route("/add-recipe", methods=["GET"])
+def add_recipe():
+    if "user_id" not in session:
+        return login_page()  # or redirect(url_for('login_page'))
+
+    return get_html("add_recipe.html")  # only reached if user is logged in
+
+
 @app.route("/login", methods=["GET", "post"])
 def login_page():
     if "user_id" in session:
@@ -185,39 +109,40 @@ def login_page():
             401,
         )
 
+    # Save user ID in session
     session["user_id"] = user.id
 
     return jsonify(
-        {"success": True, "user": {"username": user.username, "id": user.id}}
+        {
+            "success": True,
+            "user": {"username": user.username, "id": user.id},
+        }
     )
 
 
-# Logout route
 @app.route("/logout", methods=["GET"])
 def logout():
+    # Clear the session
     session.pop("user_id", None)
     return jsonify({"success": True, "message": "Logged out successfully"}), 200
 
 
-# -------------------- Recipe Management Routes --------------------
+@app.route("/home", methods=["GET"])
+def home():
+    return get_html("home.html")
 
 
-# Render the add recipe page (requires login)
-@app.route("/add-recipe", methods=["GET"])
-def add_recipe():
-    if "user_id" not in session:
-        return login_page()
-    return get_html("add_recipe.html")
-
-
-# API to get all recipes
 @app.route("/api/recipes", methods=["GET"])
 def get_recipes():
     recipes = Recipe.get_all()
     return jsonify([recipe.to_dict() for recipe in recipes])
 
 
-# API to get a single recipe by ID
+@app.route("/recipes")
+def recipes():
+    return get_html("recipes.html")
+
+
 @app.route("/api/recipes/<recipe_id>", methods=["GET"])
 def get_recipe(recipe_id):
     recipe = Recipe.get_by_id(recipe_id)
@@ -226,10 +151,18 @@ def get_recipe(recipe_id):
     return jsonify(recipe.to_dict())
 
 
-# API to create a new recipe
+@app.route("/recipes/<recipe_id>")
+def recipe_detail(recipe_id):
+    recipe = Recipe.get_by_id(recipe_id)
+    if not recipe:
+        return jsonify({"success": False, "message": "Recipe not found"}), 404
+    return get_html("recipe_detail.html")
+
+
 @app.route("/api/recipes", methods=["POST"])
 def create_recipe():
     data = request.get_json()
+
     required_fields = [
         "name",
         "ingredients",
@@ -238,7 +171,6 @@ def create_recipe():
         "cook_time",
         "created_by",
     ]
-
     for field in required_fields:
         if field not in data:
             return (
@@ -259,13 +191,17 @@ def create_recipe():
     )
     recipe.save()
 
-    # NEW: Save to metadata file
-    save_recipe_metadata(recipe.id, recipe.name, data["created_by"])
-
     return jsonify({"success": True, "recipe": recipe.to_dict()}), 201
 
+# Edit Recipe Page
+@app.route("/recipes/edit/<recipe_id>")
+def edit_recipe_page(recipe_id):
+    recipe = Recipe.get_by_id(recipe_id)
+    if not recipe:
+        return "Recipe not found", 404
+    return render_template("add_recipe.html", recipe_json=recipe.to_dict())
 
-# API to update an existing recipe
+
 @app.route("/api/recipes/<recipe_id>", methods=["PUT"])
 def update_recipe(recipe_id):
     data = request.get_json()
@@ -279,82 +215,32 @@ def update_recipe(recipe_id):
     recipe.prep_time = data.get("prep_time", recipe.prep_time)
     recipe.cook_time = data.get("cook_time", recipe.cook_time)
     recipe.image_url = data.get("image_url", recipe.image_url)
+
     recipe.update()
+
     return jsonify({"success": True, "recipe": recipe.to_dict()})
 
 
-# API to delete a recipe
 @app.route("/api/recipes/<recipe_id>", methods=["DELETE"])
 def delete_recipe(recipe_id):
     if "user_id" not in session:
-        return jsonify({"success": False, "message": "Unauthorized"}), 403
+        recipe = Recipe.get_by_id(recipe_id)
 
-    recipe = Recipe.get_by_id(recipe_id)
     if not recipe:
         return jsonify({"success": False, "message": "Recipe not found"}), 404
 
     recipe.delete()
     return jsonify({"success": True})
 
-
-# Render the recipe list page
-@app.route("/recipes")
-def recipes():
-    return get_html("recipes.html")
-
-
-# Render the recipe detail page
-@app.route("/recipes/<recipe_id>")
-def recipe_detail(recipe_id):
-    recipe = Recipe.get_by_id(recipe_id)
-    if not recipe:
-        return jsonify({"success": False, "message": "Recipe not found"}), 404
-    return get_html("recipe_detail.html")
-
-
-# Render the recipe edit page
-@app.route("/recipes/edit/<recipe_id>")
-def edit_recipe_page(recipe_id):
-    recipe = Recipe.get_by_id(recipe_id)
-    if not recipe:
-        return "Recipe not found", 404
-    return render_template("add_recipe.html", recipe_json=recipe.to_dict())
-
-
-# -------------------- Static Page & File Handling --------------------
-
-
-# Serve the home page
-@app.route("/")
-def index():
-    return get_html("home.html")
-
-
-# # Serve any static template file
-# @app.route("/<path:path>")
-# def send_template(path):
-#     return send_from_directory("templates", path)
-
-
-# Render the home.html file (duplicate of `/`)
-@app.route("/home", methods=["GET"])
-def home():
-    return get_html("home.html")
-
-
-# -------------------- Error Handling --------------------
-
-
-# Handle 404 errors with a custom page
 @app.errorhandler(404)
 def page_not_found(e):
     return get_html("404.html")
 
-
-# -------------------- Run App --------------------
-
 if __name__ == "__main__":
     app.run(debug=True)
+
+
+
 
 
 # --------------------------
@@ -562,6 +448,7 @@ if __name__ == "__main__":
 #     recipe.save()
 
 
+
 #     # NEW: Also store in user_recipes.txt
 #     with open(USER_RECIPES, "a") as f:
 #         f.write(
@@ -595,6 +482,7 @@ if __name__ == "__main__":
 #     return render_template("add_recipe.html", recipe_json=recipe.to_dict())
 
 
+
 # # Route: Handles individual recipe operations
 # # GET: Returns single recipe details
 # # PUT: Updates existing recipe
@@ -611,7 +499,7 @@ if __name__ == "__main__":
 
 #     elif request.method == "PUT":
 #         data = request.get_json()
-
+        
 #         # Validate required fields for update
 #         required_fields = ["name", "ingredients", "instructions", "prep_time", "cook_time"]
 #         missing = [field for field in required_fields if field not in data]
@@ -620,12 +508,12 @@ if __name__ == "__main__":
 #                 "success": False,
 #                 "message": f"Missing required fields: {', '.join(missing)}"
 #             }), 400
-
+        
 #         # Update the recipe
 #         try:
 #             recipe.update(data)
 #             return jsonify({
-#                 "success": True,
+#                 "success": True, 
 #                 "recipe": recipe.to_dict(),
 #                 "message": "Recipe updated successfully"
 #             })

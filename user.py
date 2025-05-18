@@ -1,10 +1,11 @@
-import json
 import os
 import hashlib
 import datetime
 from uuid import uuid4
-
+import json
 class User:
+    DATA_FILE = "data/users.txt"
+    
     def __init__(self, username, password=None, hashed_password=None, id=None, created_at=None):
         self.id = id if id else str(uuid4())
         self.username = username
@@ -12,7 +13,7 @@ class User:
         self.created_at = created_at if created_at else datetime.datetime.now().isoformat()
     
     def _hash_password(self, password):
-        # Simple hashing for demonstration purposes
+        # Simple hashing for demonstration (consider bcrypt for production)
         return hashlib.sha256(password.encode()).hexdigest()
     
     def verify_password(self, password):
@@ -29,24 +30,32 @@ class User:
     @classmethod
     def from_dict(cls, data):
         return cls(
-            username=data.get("username"),
-            hashed_password=data.get("hashed_password"),
-            id=data.get("id"),
-            created_at=data.get("created_at")
+            username=data["username"],
+            hashed_password=data["hashed_password"],
+            id=data["id"],
+            created_at=data["created_at"]
         )
     
     @classmethod
+    def _ensure_data_file_exists(cls):
+        os.makedirs("data", exist_ok=True)
+        if not os.path.exists(cls.DATA_FILE):
+            with open(cls.DATA_FILE, "w") as f:
+                f.write("")
+    
+    @classmethod
     def get_all(cls):
+        cls._ensure_data_file_exists()
         users = []
-        if os.path.exists("data/users.json"):
-            with open("data/users.json", "r") as f:
-                try:
-                    data = json.load(f)
-                    for user_data in data:
+        with open(cls.DATA_FILE, "r") as f:
+            for line in f:
+                line = line.strip()
+                if line:
+                    try:
+                        user_data = json.loads(line)
                         users.append(cls.from_dict(user_data))
-                except json.JSONDecodeError:
-                    # Handle empty or invalid JSON file
-                    pass
+                    except json.JSONDecodeError:
+                        continue
         return users
     
     @classmethod
@@ -58,19 +67,17 @@ class User:
         return None
     
     def save(self):
+        self._ensure_data_file_exists()
         users = self.get_all()
-        # Check if user already exists
-        for i, user in enumerate(users):
-            if user.username == self.username:
-                # Update existing user
-                users[i] = self
-                break
+        
+        # Update existing user or add new
+        existing_index = next((i for i, u in enumerate(users) if u.username == self.username), None)
+        if existing_index is not None:
+            users[existing_index] = self
         else:
-            # Add new user
             users.append(self)
         
-        # Save all users to file
-        os.makedirs("data", exist_ok=True)
-        with open("data/users.json", "w") as f:
-            json.dump([user.to_dict() for user in users], f, indent=2)
-        return self
+        # Save all users
+        with open(self.DATA_FILE, "w") as f:
+            for user in users:
+                f.write(json.dumps(user.to_dict()) + "\n")

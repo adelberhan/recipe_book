@@ -83,6 +83,24 @@ class Recipe:
         self._save_all_recipes(recipes)
         return self
     
+    # def update(self, update_data):
+    #     self.name = update_data.get('name', self.name)
+    #     self.ingredients = update_data.get('ingredients', self.ingredients)
+    #     self.instructions = update_data.get('instructions', self.instructions)
+    #     self.prep_time = update_data.get('prep_time', self.prep_time)
+    #     self.cook_time = update_data.get('cook_time', self.cook_time)
+    #     self.image_url = update_data.get('image_url', self.image_url)
+    
+    # # Save to JSON file
+    #     recipes = self.get_all()
+    #     for i, recipe in enumerate(recipes):
+    #         if recipe.id == self.id:
+    #             recipes[i] = self.to_dict()
+    #             break
+                
+    #     self._save_all_recipes(recipes)
+    #     return self
+    
     def delete(self):
         recipes = self.get_all()
         recipes = [recipe for recipe in recipes if recipe.id != self.id]
