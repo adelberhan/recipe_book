@@ -1,36 +1,72 @@
-:root {
-  --primary-color: #ffb22c;
-  --secondary-color: #dddddd;
-  --dark-color: #2d3436;
-  --light-color: #fff8f0;
-  --danger-color: #e74c3c;
-  --success-color: #2ecc71;
-  --fon-color: #10375c;
-  --font-main: cursive;
+
+.bg {
+  background: url("../../static/imgs/WhatsApp%20Image%202025-05-15%20at%2017.36.54_d66b9d3f.jpg") no-repeat center/cover;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: var(--font-main);
+.home-content {
+  text-align: center;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: clamp(1.5rem, 5vw, 3rem);
+  border-radius: 10px;
+  width: min(90%, 600px);
+  margin: 0 auto;
 }
 
-body {
-  font-optical-sizing: auto;
-
-  font-weight: 400;
-  font-style: normal;
-  line-height: 1.6;
-  color: var(--fon-color);
-  /* background-color: #f9f9f9; */
-  background-color: #9acbd0 !important;
-  opacity: 0.8 !important;
-  background-size: 20px 20px !important;
-  background-image: repeating-linear-gradient(0deg, #f2efe7, #f2efe7 1px, #9acbd0 1px, #9acbd0) !important;
-  opacity: 1 !important;
+h1 {
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  margin-bottom: 1rem;
 }
 
+p {
+  font-size: clamp(1rem, 3vw, 1.25rem);
+  margin-bottom: 1.5rem;
+}
+
+.buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(0.5rem, 2vw, 0.75rem) clamp(1rem, 3vw, 1.5rem);
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  font-size: clamp(0.875rem, 3vw, 1rem);
+  min-width: max-content;
+}
+
+.btn-view {
+  background-color: var(--primary-color);
+  color: var(--dark-color);
+}
+
+.btn-view:hover {
+  background-color: #aa6f62;
+  color: white;
+}
+
+.btn-add {
+  background-color: var(--secondary-color);
+  color: var(--dark-color);
+}
+
+.btn-add:hover {
+  color: white;
+  background-color: #6b7380;
+}
 .bg {
   margin: 0;
   padding: 0;
@@ -52,18 +88,8 @@ body {
   padding: 20px;
   border-radius: 10px;
 }
-.btn {
-  display: inline-block;
-  background: var(--light-color);
-  color: var(--dark-color);
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 15px;
-  font-weight: 500;
-  transition: all 0.3s ease;
-}
+
+
 a {
   text-decoration: none;
 }
@@ -71,17 +97,17 @@ a {
   background-color: var(--primary-color);
 }
 .btn-view:hover {
-  background-color: #aa6f62;
-  color: white;
+  background-color: #ffd286;
+  color: black;
 }
 .btn-add {
-  background-color: var(--secondary-color);
+  background-color: var(--success-color);
+  color: var(--dark-color);
 }
 .btn-add:hover {
-  color: white;
-  background-color: #6b7380;
+  color: var(--dark-color);
+  background-color: #91d5bc;
 }
 p {
   margin-bottom: 10px;
 }
-
