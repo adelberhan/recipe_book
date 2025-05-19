@@ -22,7 +22,7 @@ class Recipe:
     
     @classmethod
     def _get_next_id(cls):
-        """Generate the next sequential ID"""
+        # Generate the next sequential ID # 
         if cls._last_id == 0:
             # Initialize with the highest existing ID + 1
             recipes = cls.get_all()

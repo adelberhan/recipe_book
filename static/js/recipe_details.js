@@ -58,7 +58,6 @@ if (!recipeId) {
                 throw new Error("Failed to delete recipe");
               }
             } catch (err) {
-              console.error("Delete error:", err);
               alert("Failed to delete recipe. Please try again.");
             }
           }
