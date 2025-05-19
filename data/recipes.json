@@ -12,6 +12,71 @@
     "updated_at": "2025-05-14T10:10:09.386637"
   },
   {
+    "id": "a0b41a8f-dc8e-41f9-bb7f-1f542f4abcf4",
+    "name": "Caesar Salad",
+    "ingredients": "Romaine lettuce, croutons, parmesan, Caesar dressing, chicken",
+    "instructions": "Toss ingredients with dressing and top with grilled chicken.",
+    "prep_time": "10 mins",
+    "cook_time": "5 mins",
+    "image_url": "https://images.unsplash.com/photo-1551183053-bf91a1d81141",
+    "created_by": "adel_admin",
+    "created_at": "2025-05-08T12:30:00",
+    "updated_at": "2025-05-12T13:45:00",
+    "language": "English"
+  },
+  {
+    "id": "b1c52b9g-ed9f-42g0-cc8g-2g653g5bcde5",
+    "name": "Spaghetti Carbonara",
+    "ingredients": "Spaghetti, eggs, pancetta, parmesan, black pepper",
+    "instructions": "Cook pasta, mix with eggs and pancetta, then top with parmesan and pepper.",
+    "prep_time": "15 mins",
+    "cook_time": "10 mins",
+    "image_url": "https://fthmb.tqn.com/AmtBki2yVYtxFyDoH6PpU6-RYag=/3888x2592/filters:fill(auto,1)/italian-food--pasta-alla-carbonara-111648900-5a4fd617ec2f640037f8cf3d.jpg",
+    "created_by": "adel_admin",
+    "created_at": "2025-05-09T10:15:00",
+    "updated_at": "2025-05-13T11:20:00",
+    "language": "English"
+  },
+  {
+    "id": "c2d63c0h-fe0g-53h1-dd9h-3h764h6cdf6",
+    "name": "Chocolate Chip Cookies",
+    "ingredients": "Flour, butter, sugar, eggs, chocolate chips",
+    "instructions": "Mix ingredients, shape into cookies, and bake at 350°F for 10-12 mins.",
+    "prep_time": "20 mins",
+    "cook_time": "12 mins",
+    "image_url": "https://images.unsplash.com/photo-1558961363-fa8fdf82db35",
+    "created_by": "adel_admin",
+    "created_at": "2025-05-10T08:45:00",
+    "updated_at": "2025-05-14T09:30:00",
+    "language": "English"
+  },
+  {
+    "id": "d3e74d1i-gf1h-64i2-ee0i-4i875i7deg7",
+    "name": "Beef Burger",
+    "ingredients": "Ground beef, buns, lettuce, tomato, cheese, ketchup",
+    "instructions": "Grill patty, assemble with toppings in a bun.",
+    "prep_time": "10 mins",
+    "cook_time": "8 mins",
+    "image_url": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd",
+    "created_by": "adel_admin",
+    "created_at": "2025-05-11T14:20:00",
+    "updated_at": "2025-05-15T15:10:00",
+    "language": "English"
+  },
+
+  {
+    "id": "e4f85e2j-hg2i-75j3-ff1j-5j986j8efh8",
+    "name": "Pancakes",
+    "ingredients": "Flour, milk, eggs, butter, sugar, baking powder",
+    "instructions": "Mix batter, pour onto griddle, flip when bubbles form, and serve with syrup.",
+    "prep_time": "10 mins",
+    "cook_time": "10 mins",
+    "image_url": "https://images.unsplash.com/photo-1554520735-0a6b8b6ce8b7",
+    "created_by": "adel_admin",
+    "created_at": "2025-05-12T07:30:00",
+    "updated_at": "2025-05-16T08:25:00"
+  },
+  {
     "id": "ae41a34e-9d45-4c4b-88cf-df8e3a11b1d5",
     "name": "Beef Tacos",
     "ingredients": "Taco shells, ground beef, lettuce, cheese, salsa, sour cream",
@@ -109,7 +174,7 @@
   },
   {
     "id": "e962e370-5d3a-44e8-8406-3ec8b7d9b6d8",
-    "name": "Chocolate Chip Cookies",
+    "name": "Cheese Burger",
     "ingredients": "Flour, sugar, butter, eggs, vanilla, chocolate chips",
     "instructions": "Mix ingredients, shape dough, bake until golden brown.",
     "prep_time": "15 mins",
@@ -118,77 +183,5 @@
     "created_by": "adel",
     "created_at": "2025-05-10T18:00:00",
     "updated_at": "2025-05-12T18:15:00"
-  },
-  {
-    "id": "9b7eebe3-3401-4e42-bc82-2eff700a8c2e",
-    "name": "add ",
-    "ingredients": "ade",
-    "instructions": "aask",
-    "prep_time": "11",
-    "cook_time": "11",
-    "image_url": "https://thumbs.dreamstime.com/b/fresh-raw-ingredients-healthy-cooking-salad-making-copy-space-vegetable-rustic-wood-background-top-view-diet-72370015.jpg",
-    "created_by": "your_user_id_here",
-    "created_at": "2025-05-15T16:41:45.520416",
-    "updated_at": "2025-05-15T16:41:45.520416"
-  },
-  {
-    "id": "dabc3882-1056-41aa-a6cd-d1ddb48fe5cb",
-    "name": "pan ckake",
-    "ingredients": "aa",
-    "instructions": "aa",
-    "prep_time": "11",
-    "cook_time": "11",
-    "image_url": "https://thumbs.dreamstime.com/b/fresh-raw-ingredients-healthy-cooking-salad-making-copy-space-vegetable-rustic-wood-background-top-view-diet-72370015.jpg",
-    "created_by": "your_user_id_here",
-    "created_at": "2025-05-15T16:52:18.886764",
-    "updated_at": "2025-05-15T16:52:18.886764"
-  },
-  {
-    "id": "2fe5461a-e782-4ff7-81c2-8fa67e3159e3",
-    "name": "ee",
-    "ingredients": "22",
-    "instructions": "22ss",
-    "prep_time": "11",
-    "cook_time": "22",
-    "image_url": "https://thumbs.dreamstime.com/b/fresh-raw-ingredients-healthy-cooking-salad-making-copy-space-vegetable-rustic-wood-background-top-view-diet-72370015.jpg",
-    "created_by": "adeltest",
-    "created_at": "2025-05-15T17:19:18.164789",
-    "updated_at": "2025-05-17T19:04:55.347560"
-  },
-  {
-    "id": "a9aab33d-fcb1-47e3-b38a-2e25215f62c1",
-    "name": "adel",
-    "ingredients": "22",
-    "instructions": "22",
-    "prep_time": "22",
-    "cook_time": "22",
-    "image_url": "http://127.0.0.1:5000/add-recipe",
-    "created_by": "adeltest",
-    "created_at": "2025-05-17T19:05:27.102170",
-    "updated_at": "2025-05-17T19:40:30.560484"
-  },
-  {
-    "id": "9ce69001-31dd-4837-a229-05b420982c41",
-    "name": "adeltestl",
-    "ingredients": "Spaghetti, minced beef, tomato sauce, onion, garlic, olive oil",
-    "instructions": "Boil spaghetti. Cook beef with onion and garlic. Add sauce. Combine.",
-    "prep_time": "15 mins",
-    "cook_time": "30 mins",
-    "image_url": "https://example.com/spaghetti.jpg",
-    "created_by": "john_doe",
-    "created_at": "2025-05-17T19:07:46.707166",
-    "updated_at": "2025-05-17T19:07:46.707166"
-  },
-  {
-    "id": "ae192d3c-b318-4ba1-9c8e-b5da12aeb643",
-    "name": "kkk",
-    "ingredients": "ww",
-    "instructions": "ww",
-    "prep_time": "11",
-    "cook_time": "11",
-    "image_url": "https://th.bing.com/th/id/OIP.5K9IJVIj-SMLuxlBoP08VwHaDQ?w=346&h=154&c=7&r=0&o=7&cb=iwp2&dpr=1.3&pid=1.7&rm=3",
-    "created_by": "adeltest",
-    "created_at": "2025-05-17T20:07:40.701881",
-    "updated_at": "2025-05-17T20:07:40.701881"
   }
 ]
