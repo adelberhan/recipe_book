@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# MY FINAL PROJECT: 🥘 Book Application
-=======
 # MY FINAL PROJECT: 🥘 Recipe Book
 >>>>>>> fdbe272bc9b0f8f2aa5112b0c15abf7366f6fec3
 
@@ -117,13 +114,6 @@ Recipe-app/
 | `/recipes/edit/<id>`| GET    | Recipe edit form          |
 
 ---
-
-## How to Run the Project
-
-1. Install requirements: `pip install flask`
-2. Run the application: `python app.py`
-3. Access in browser at: `http://localhost:5000`
-
 
 ## 🚀 Installation
 
