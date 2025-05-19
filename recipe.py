@@ -1,11 +1,15 @@
 import json
 import os
 import datetime
-from uuid import uuid4
+from pathlib import Path
 
 class Recipe:
-    def __init__(self, name, ingredients, instructions, prep_time, cook_time, image_url=None, id=None, created_by=None, created_at=None, updated_at=None):
-        self.id = id if id else str(uuid4())
+    _last_id = 0  # Class variable to keep track of last used ID
+    
+    def __init__(self, name, ingredients, instructions, prep_time, cook_time, 
+                 image_url=None, id=None, created_by=None, 
+                 created_at=None, updated_at=None):
+        self.id = id if id is not None else self._get_next_id()
         self.name = name
         self.ingredients = ingredients
         self.instructions = instructions
@@ -15,6 +19,17 @@ class Recipe:
         self.created_by = created_by
         self.created_at = created_at if created_at else datetime.datetime.now().isoformat()
         self.updated_at = updated_at if updated_at else datetime.datetime.now().isoformat()
+    
+    @classmethod
+    def _get_next_id(cls):
+        """Generate the next sequential ID"""
+        if cls._last_id == 0:
+            # Initialize with the highest existing ID + 1
+            recipes = cls.get_all()
+            if recipes:
+                cls._last_id = max(int(r.id) for r in recipes)
+        cls._last_id += 1
+        return str(cls._last_id)
     
     def to_dict(self):
         return {
@@ -48,8 +63,9 @@ class Recipe:
     @classmethod
     def get_all(cls):
         recipes = []
-        if os.path.exists("data/recipes.json"):
-            with open("data/recipes.json", "r") as f:
+        data_file = Path("data/recipes.json")
+        if data_file.exists():
+            with open(data_file, "r") as f:
                 try:
                     data = json.load(f)
                     for recipe_data in data:
@@ -63,7 +79,7 @@ class Recipe:
     def get_by_id(cls, recipe_id):
         recipes = cls.get_all()
         for recipe in recipes:
-            if recipe.id == recipe_id:
+            if recipe.id == str(recipe_id):  # Ensure string comparison
                 return recipe
         return None
     
@@ -82,24 +98,6 @@ class Recipe:
                 break
         self._save_all_recipes(recipes)
         return self
-    
-    # def update(self, update_data):
-    #     self.name = update_data.get('name', self.name)
-    #     self.ingredients = update_data.get('ingredients', self.ingredients)
-    #     self.instructions = update_data.get('instructions', self.instructions)
-    #     self.prep_time = update_data.get('prep_time', self.prep_time)
-    #     self.cook_time = update_data.get('cook_time', self.cook_time)
-    #     self.image_url = update_data.get('image_url', self.image_url)
-    
-    # # Save to JSON file
-    #     recipes = self.get_all()
-    #     for i, recipe in enumerate(recipes):
-    #         if recipe.id == self.id:
-    #             recipes[i] = self.to_dict()
-    #             break
-                
-    #     self._save_all_recipes(recipes)
-    #     return self
     
     def delete(self):
         recipes = self.get_all()

@@ -1,4 +1,6 @@
-
+body{
+  opacity: 0.88;
+}
 /* Recipe Container */
 .recipe {
   display: flex;
@@ -29,7 +31,7 @@
 }
 
 .btn-back:hover {
-  background-color: #27ae60 ;
+  background-color: var(--hover-success-color) ;
   color: white;
 }
 a{

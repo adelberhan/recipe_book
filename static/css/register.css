@@ -1,47 +1,14 @@
-:root {
-  --primary-color: #ffb22c;
-  --secondary-color: #03a791;
-  --dark-color: #2d3436;
-  --light-color: #fff8f0;
-  --success-color: #2ecc71;
-  --fon-color: #526d82;
-  --danger-color: #e74c3c;
-  --font-main: cursive;
-}
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: var(--font-main);
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+body{
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-  line-height: 1.6;
-  color: var(--dark-color);
-  /* background-color: #f9f9f9; */
-  background-color: #dfdfdf;
-  opacity: 0.8;
-  background-image: linear-gradient(#b7b7bc 1px, transparent 1px), linear-gradient(to right, #b7b7bc 1px, #dfdfdf 1px);
-  background-size: 20px 20px;
+  opacity: 0.88;
 }
 a {
   color: black;
 }
-input,
-textarea {
-  border-radius: 20px !important;
-}
+
 
 .login-container {
   background: #ffffffa6;
