@@ -1,4 +1,4 @@
-# MY FINAL PROJECT: 🥘 Book Application
+# MY FINAL PROJECT: 🥘 Recipe Book
 
 This is a Flask-based web application that allows users to register, login, and manage their recipe collection. The new feature implemented is a complete user authentication system with session management and localStorage integration for persistent client-side state, along with a robust recipe management system.
 
