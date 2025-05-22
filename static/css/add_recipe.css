@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Alkatra:wght@400..700&family=Bagel+Fat+One&family=Klee+One&family=Lavishly+Yours&display=swap");
 
 .container {
   max-width: 1200px;
@@ -5,6 +6,12 @@
   padding: 0 20px;
   background-color: #ffffffa6;
   border-radius: 16px;
+}
+
+label,input,a,button {
+  font-family: "Alkatra", system-ui;
+  font-weight: 400;
+  font-style: normal;
 }
 
 .view {

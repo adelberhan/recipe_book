@@ -9,7 +9,7 @@
     "image_url": "https://fthmb.tqn.com/AmtBki2yVYtxFyDoH6PpU6-RYag=/3888x2592/filters:fill(auto,1)/italian-food--pasta-alla-carbonara-111648900-5a4fd617ec2f640037f8cf3d.jpg",
     "created_by": "adel",
     "created_at": "2025-05-09T10:15:00",
-    "updated_at": "2025-05-20T11:16:41.126897"
+    "updated_at": "2025-05-22T19:14:58.318557"
   },
   {
     "id": "5",
@@ -130,41 +130,5 @@
     "created_by": "soups_master",
     "created_at": "2025-05-10T11:20:00",
     "updated_at": "2025-05-14T10:11:40.818319"
-  },
-  {
-    "id": "19",
-    "name": "000",
-    "ingredients": "34",
-    "instructions": "34",
-    "prep_time": "9996",
-    "cook_time": "999",
-    "image_url": "",
-    "created_by": "adel",
-    "created_at": "2025-05-20T12:09:54.957759",
-    "updated_at": "2025-05-22T10:23:24.133892"
-  },
-  {
-    "id": "20",
-    "name": "2222",
-    "ingredients": "99",
-    "instructions": "99",
-    "prep_time": "99",
-    "cook_time": "99",
-    "image_url": "",
-    "created_by": "aaaa",
-    "created_at": "2025-05-20T12:11:35.508526",
-    "updated_at": "2025-05-20T12:11:48.546265"
-  },
-  {
-    "id": "21",
-    "name": "pp",
-    "ingredients": "9",
-    "instructions": "9",
-    "prep_time": "9",
-    "cook_time": "9",
-    "image_url": "",
-    "created_by": null,
-    "created_at": "2025-05-20T12:12:30.850327",
-    "updated_at": "2025-05-20T12:12:30.850327"
   }
 ]

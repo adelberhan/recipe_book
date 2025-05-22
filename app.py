@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, session,render_template
+from flask import Flask, request, jsonify, session, render_template, redirect
 import os
 import json
 from recipe import Recipe
@@ -14,6 +14,34 @@ def get_html(page_name):
     try:
         with open(f"templates/{page_name}") as html_file:
             return html_file.read()
+    except FileNotFoundError:
+        return "Page not found", 404
+
+
+def get_html_add_edit(page_name, context=None):
+    try:
+        with open(f"templates/{page_name}") as html_file:
+            html_content = html_file.read()
+            if context:
+                # Replace all template placeholders
+                html_content = html_content.replace("$$name$$", context.get("name", ""))
+                html_content = html_content.replace(
+                    "$$ingredients$$", context.get("ingredients", "")
+                )
+                html_content = html_content.replace(
+                    "$$instructions$$", context.get("instructions", "")
+                )
+                html_content = html_content.replace(
+                    "$$prep_time$$", context.get("prep_time", "")
+                )
+                html_content = html_content.replace(
+                    "$$cook_time$$", context.get("cook_time", "")
+                )
+                html_content = html_content.replace(
+                    "$$image_url$$", context.get("image_url", "")
+                )
+                html_content = html_content.replace("$$id$$", context.get("id", ""))
+            return html_content
     except FileNotFoundError:
         return "Page not found", 404
 
@@ -162,6 +190,27 @@ def add_recipe():
     return get_html("add_recipe.html")
 
 
+@app.route("/add-recipe")
+def add_recipe_page():
+    # Return empty form for adding new recipe
+    if "user_id" not in session:
+        return redirect("/login")  # or handle unauthorized access appropriately
+
+
+#     return get_html_add_edit(
+#         "add_recipe.html",
+#         {
+#             "name": "",
+#             "ingredients": "",
+#             "instructions": "",
+#             "prep_time": "",
+#             "cook_time": "",
+#             "image_url": "",
+#             "id": "",
+#         }
+#     )
+
+
 @app.route("/api/recipes", methods=["GET"])
 def get_recipes():
     recipes = Recipe.get_all()
@@ -272,6 +321,27 @@ def edit_recipe_page(recipe_id):
     if not recipe:
         return "Recipe not found", 404
     return render_template("add_recipe.html", recipe_json=recipe.to_dict())
+
+
+# @app.route("/recipes/edit/<recipe_id>")
+# def edit_recipe_page(recipe_id):
+#     recipe = Recipe.get_by_id(recipe_id)
+#     if not recipe:
+#         return "Recipe not found", 404
+#     return get_html_add_edit(
+#         "add_recipe.html",
+#         {
+#             "name": recipe.name,
+#             "ingredients": recipe.ingredients,
+#             "instructions": recipe.instructions,
+#             "prep_time": recipe.prep_time,
+#             "cook_time": recipe.cook_time,
+#             "image_url": recipe.image_url,
+#             "id": recipe.id,
+#         },
+#     )
+
+# Return form populated with recipe data
 
 
 # -------------------- Error Handling --------------------

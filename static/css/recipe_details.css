@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Alkatra:wght@400..700&family=Bagel+Fat+One&family=Klee+One&family=Lavishly+Yours&display=swap");
+
 body{
   opacity: 0.88;
 }
@@ -8,6 +10,16 @@ body{
   justify-content: center;
   min-height: 100vh;
   padding: 2rem 1rem;
+}
+span,strong,
+button,h2,h1,p ,a{
+  font-family: "Alkatra", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+span{
+  font-size:1.2rem;
+  color: var(--fon-color);
 }
 
 .recipe-container {
@@ -93,7 +105,6 @@ a{
 
 .ingredients-instructions h2 {
   color: var(--fon-color);
-  margin-bottom: 1rem;
   font-size: clamp(1.2rem, 3vw, 1.5rem);
 }
 
