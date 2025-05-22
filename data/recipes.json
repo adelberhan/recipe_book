@@ -133,7 +133,7 @@
   },
   {
     "id": "19",
-    "name": "33333",
+    "name": "000",
     "ingredients": "34",
     "instructions": "34",
     "prep_time": "9996",
@@ -141,7 +141,7 @@
     "image_url": "",
     "created_by": "adel",
     "created_at": "2025-05-20T12:09:54.957759",
-    "updated_at": "2025-05-20T12:10:25.414026"
+    "updated_at": "2025-05-22T10:23:24.133892"
   },
   {
     "id": "20",
